@@ -1,19 +1,23 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBIi5wKuB-LZUO5JtKMX2QDWY6m5hBz5SY",
-  authDomain: "giphy-search-app-f923b.firebaseapp.com",
-  projectId: "giphy-search-app-f923b",
-  storageBucket: "giphy-search-app-f923b.appspot.com",
-  messagingSenderId: "1012807935982",
-  appId: "1:1012807935982:web:becae52a7267fc764350ff",
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGE_ID,
+  appId: process.env.REACT_APP_APP_ID,
 };
 
 // Initialize Firebase
-initializeApp(firebaseConfig);
-export const db = getFirestore();
+const app = initializeApp(firebaseConfig);
+
+export const auth = getAuth(app);
+export const provider = new GoogleAuthProvider();
+export const database = getFirestore(app);
