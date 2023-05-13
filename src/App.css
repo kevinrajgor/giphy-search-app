@@ -1,0 +1,141 @@
+/****************************
+CSS RESET
+*****************************/
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/****************************
+Element Styles
+*****************************/
+
+body {
+  background-color: #e8eaee;
+}
+
+/****************************
+Main styles of the page
+*****************************/
+
+.main-content {
+  margin-top: 50px;
+  width: 100vw;
+  height: calc(100vh-50px);
+}
+
+/****************************
+ Search bar styles
+*****************************/
+section {
+  background-color: #ffffff;
+  border-radius: 15px;
+  margin: 0 auto;
+  width: 70vw;
+  position: relative;
+  padding: 24px;
+}
+.searchbar {
+  background-color: inherit;
+  border-radius: inherit;
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+#searchbar-icon {
+  position: absolute;
+  left: 40px;
+  top: 37px;
+}
+
+#searchbar-bar {
+  background-color: #f2f4f8;
+  border: none;
+  border-radius: inherit;
+  font-size: 22px;
+  height: 50px;
+  padding-left: 65px;
+  width: 100%;
+}
+
+#searchbar-bar::placeholder {
+  color: #000000;
+}
+
+#searchbar-button {
+  background-color: #000000;
+  border: none;
+  border-radius: 15px;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 18px;
+  width: 10%;
+  height: 50px;
+}
+
+/****************************
+ Items Container Styles
+*****************************/
+
+.item-container {
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+}
+
+.items {
+  background-color: #ffffff;
+}
+
+.items img {
+  border-radius: 20px;
+}
+
+.items p {
+  background-color: inherit;
+  color: #000000;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.items span {
+  background-color: inherit;
+  color: #999faa;
+  font-size: 16px;
+}
+
+/****************************
+ Pagination Styles
+*****************************/
+
+.pagination {
+  background-color: inherit;
+  text-align: center;
+  margin-top: 150px;
+}
+
+.pagination button {
+  background-color: #ffffff;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 10px 40px;
+}
+
+.pages {
+  margin: 0 20px;
+  font-weight: 500;
+}
+
+#main-page {
+  display: inline-block;
+  background-color: #e8eaee;
+  border-bottom: 5px solid rgb(255, 118, 118);
+  margin: auto 0;
+  height: 30px;
+  width: 30px;
+}
