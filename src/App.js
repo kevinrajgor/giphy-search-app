@@ -4,6 +4,8 @@ import image from "./Assets/search-icon.svg";
 import Items from "./Components/Items";
 import SignIn from "./Components/SignIn";
 import Loader from "./Components/Loader";
+import { auth } from "./firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const PAGE_SIZE = 3;
 
@@ -14,6 +16,7 @@ function App() {
   const [page, setPage] = useState(1);
   const [paginatedData, setPaginatedData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [user] = useAuthState(auth);
 
   function handleChange(e) {
     let query = e.currentTarget.value;
@@ -48,54 +51,60 @@ function App() {
   return (
     <div className="main-content">
       <SignIn />
-      <section>
-        <div className="searchbar">
-          <img
-            src={image}
-            height="25px"
-            alt="search icon"
-            id="searchbar-icon"
-          />
-          <input
-            placeholder="Article name or keywords"
-            id="searchbar-bar"
-            type="text"
-            onChange={handleChange}
-            autoComplete="off"
-          />
-          <button id="searchbar-button">Search</button>
+      {user ? (
+        <section>
+          <div className="searchbar">
+            <img
+              src={image}
+              height="25px"
+              alt="search icon"
+              id="searchbar-icon"
+            />
+            <input
+              placeholder="Article name or keywords"
+              id="searchbar-bar"
+              type="text"
+              onChange={handleChange}
+              autoComplete="off"
+            />
+            <button id="searchbar-button">Search</button>
+          </div>
+          {isLoading ? (
+            <Loader />
+          ) : (
+            <div className="item-container">
+              {paginatedData.map((item) => {
+                return <Items item={item} />;
+              })}
+            </div>
+          )}
+          {data.length > 0 && (
+            <div className="pagination">
+              <button
+                disabled={page === 1}
+                onClick={() => handlePageChange(page - 1)}
+              >
+                Previous
+              </button>
+              <span className="pages">{page - 1}</span>
+              <span className="pages" id="main-page">
+                {page}
+              </span>
+              <span className="pages">{page + 1}</span>
+              <button
+                disabled={data.length <= page * PAGE_SIZE}
+                onClick={() => handlePageChange(page + 1)}
+              >
+                Next
+              </button>
+            </div>
+          )}
+        </section>
+      ) : (
+        <div className="login-message">
+          To access the search you are required to Login!
         </div>
-        {isLoading ? (
-          <Loader />
-        ) : (
-          <div className="item-container">
-            {paginatedData.map((item) => {
-              return <Items item={item} />;
-            })}
-          </div>
-        )}
-        {data.length > 0 && (
-          <div className="pagination">
-            <button
-              disabled={page === 1}
-              onClick={() => handlePageChange(page - 1)}
-            >
-              Previous
-            </button>
-            <span className="pages">{page - 1}</span>
-            <span className="pages" id="main-page">
-              {page}
-            </span>
-            <span className="pages">{page + 1}</span>
-            <button
-              disabled={data.length <= page * PAGE_SIZE}
-              onClick={() => handlePageChange(page + 1)}
-            >
-              Next
-            </button>
-          </div>
-        )}
-      </section>
+      )}
     </div>
   );
 }
