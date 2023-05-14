@@ -83,12 +83,15 @@ section {
 .item-container {
   background-color: #ffffff;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
   margin-top: 30px;
 }
 
 .items {
   background-color: #ffffff;
+  width: 350px;
+  height: 450px;
 }
 
 .items img {
@@ -115,18 +118,20 @@ section {
 .pagination {
   background-color: inherit;
   text-align: center;
-  margin-top: 150px;
+  margin-top: 70px;
 }
 
 .pagination button {
   background-color: #ffffff;
   border: none;
+  cursor: pointer;
   font-size: 16px;
   font-weight: 600;
   margin: 10px 40px;
 }
 
 .pages {
+  cursor: default;
   margin: 0 20px;
   font-weight: 500;
 }
@@ -138,4 +143,41 @@ section {
   margin: auto 0;
   height: 30px;
   width: 30px;
+}
+
+/****************************
+ Login Styles
+*****************************/
+
+.login {
+  color: #000000;
+  display: flex;
+  justify-content: space-around;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  width: 70vw;
+}
+
+.login span {
+  margin-top: 10px;
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.login-button {
+  background-color: #000000;
+  border: none;
+  border-radius: 15px;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 16px;
+  height: 50px;
+  width: 10%;
+}
+
+.login-button:hover,
+#searchbar-button:hover,
+.pagination button:hover {
+  transform: scale(1.1);
+  transition: all 0.2s ease-in-out;
 }

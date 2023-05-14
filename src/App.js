@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import "./App.css";
 import image from "./Assets/search-icon.svg";
 import Items from "./Components/Items";
+import SignIn from "./Components/SignIn";
 
 const PAGE_SIZE = 3;
 
@@ -42,6 +43,7 @@ function App() {
 
   return (
     <div className="main-content">
+      <SignIn />
       <section>
         <div className="searchbar">
           <img
@@ -72,11 +74,11 @@ function App() {
             >
               Previous
             </button>
+            <span className="pages">{page - 1}</span>
             <span className="pages" id="main-page">
               {page}
             </span>
             <span className="pages">{page + 1}</span>
-            <span className="pages">{page + 2}</span>
             <button
               disabled={data.length <= page * PAGE_SIZE}
               onClick={() => handlePageChange(page + 1)}
