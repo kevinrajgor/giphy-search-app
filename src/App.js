@@ -78,7 +78,7 @@ function App() {
               })}
             </div>
           )}
-          {data.length > 0 && (
+          {data.length > 0 ? (
             <div className="pagination">
               <button
                 disabled={page === 1}
@@ -98,6 +98,14 @@ function App() {
                 Next
               </button>
             </div>
+          ) : (
+            searchQueryRef.current.length > 0 &&
+            !isLoading && (
+              <div className="error-message">
+                I think you searched for something for which the GIFS still
+                haven't yet been made! <br /> <br /><br />Try Searching for something else!!
+              </div>
+            )
           )}
         </section>
       ) : (

@@ -203,3 +203,15 @@ section {
   text-align: center;
   margin-top: 20px;
 }
+
+/****************************
+ Error Message Styles
+*****************************/
+
+.error-message {
+  width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 600;
+}
