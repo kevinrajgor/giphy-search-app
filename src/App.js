@@ -3,6 +3,7 @@ import "./App.css";
 import image from "./Assets/search-icon.svg";
 import Items from "./Components/Items";
 import SignIn from "./Components/SignIn";
+import Loader from "./Components/Loader";
 
 const PAGE_SIZE = 3;
 
@@ -12,12 +13,14 @@ function App() {
   const [timer, setTimer] = useState();
   const [page, setPage] = useState(1);
   const [paginatedData, setPaginatedData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   function handleChange(e) {
     let query = e.currentTarget.value;
     searchQueryRef.current = query;
     // console.log(query);
     clearTimeout(timer);
+    setIsLoading(true);
     setTimer(
       setTimeout(() => {
         fetch(
@@ -28,6 +31,7 @@ function App() {
             setData(res.data);
             setPage(1);
             setPaginatedData(res.data.slice(0, PAGE_SIZE));
+            setIsLoading(false);
           });
         console.log("api called");
       }, 300)
@@ -61,11 +65,15 @@ function App() {
           />
           <button id="searchbar-button">Search</button>
         </div>
-        <div className="item-container">
-          {paginatedData.map((item) => {
-            return <Items item={item} />;
-          })}
-        </div>
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <div className="item-container">
+            {paginatedData.map((item) => {
+              return <Items item={item} />;
+            })}
+          </div>
+        )}
         {data.length > 0 && (
           <div className="pagination">
             <button
